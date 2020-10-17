@@ -1,0 +1,27 @@
+*.min.js
+**/node_modules/**
+flow-typed
+
+# webfont demo styles
+**/specimen_files
+
+# built sites
+benchmarks/**/public
+e2e-tests/**/public
+examples/**/public
+integration-tests/**/public
+www/public
+dist
+src/index.html
+
+# cache-dirs
+**/.cache
+
+# fixtures
+**/__testfixtures__/**
+**/__tests__/fixtures/**
+
+infrastructure
+
+# coverage
+coverage
