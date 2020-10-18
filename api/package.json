@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^0.19.3"
+    "@redwoodjs/api": "^0.19.3",
+    "bcrypt": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "eslint": "^7.11.0",

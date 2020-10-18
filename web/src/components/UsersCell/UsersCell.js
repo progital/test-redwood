@@ -7,10 +7,8 @@ export const QUERY = gql`
     users {
       id
       email
-      password
       displayName
       userName
-      createdAt
     }
   }
 `;

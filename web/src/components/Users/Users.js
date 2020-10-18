@@ -56,10 +56,8 @@ const UsersList = ({ users }) => {
           <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Display name</th>
             <th>User name</th>
-            <th>Created at</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -68,10 +66,8 @@ const UsersList = ({ users }) => {
             <tr key={user.id}>
               <td>{truncate(user.id)}</td>
               <td>{truncate(user.email)}</td>
-              <td>{truncate(user.password)}</td>
               <td>{truncate(user.displayName)}</td>
               <td>{truncate(user.userName)}</td>
-              <td>{timeTag(user.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

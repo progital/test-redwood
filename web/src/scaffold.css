@@ -138,7 +138,7 @@
 }
 .rw-form-error-wrapper {
   padding: 1rem;
-  background-color: #fff5f5;
+  background-color: transparent;
   color: #c53030;
   border-width: 1px;
   border-color: #feb2b2;

@@ -28,11 +28,11 @@ const theme = merge(swiss, {
   },
 });
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = ({ children, headerAction, ...props }) => {
   return (
     <ThemeProvider theme={theme}>
       <Flex sx={{ height: '100vh', flexDirection: 'column' }}>
-        <Header />
+        <Header action={headerAction} />
         {children}
       </Flex>
     </ThemeProvider>
