@@ -66,7 +66,6 @@ const UserForm = (props) => {
           defaultValue={props.user?.displayName}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="displayName" className="rw-field-error" />
 
@@ -82,7 +81,6 @@ const UserForm = (props) => {
           defaultValue={props.user?.userName}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
         <FieldError name="userName" className="rw-field-error" />
 
