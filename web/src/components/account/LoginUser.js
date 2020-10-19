@@ -1,33 +1,23 @@
-import { useMutation, useFlash } from '@redwoodjs/web';
+import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
 import LoginForm from 'components/account/LoginForm';
-
-const LOGIN_USER_MUTATION = gql`
-  mutation LoginUserMutation($input: LoginUserInput!) {
-    loginUser(input: $input) {
-      user {
-        id
-        displayName
-        email
-      }
-      token
-    }
-  }
-`;
+import { useState } from 'react';
 
 const LoginUser = () => {
-  const { addMessage } = useFlash();
-  const [loginUser, { loading, error }] = useMutation(LOGIN_USER_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.dashboard());
-      // addMessage('User logged in.', { classes: 'rw-flash-success' });
-    },
-  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { logIn } = useAuth();
 
   const onSave = async (input) => {
     try {
-      await loginUser({ variables: { input } });
+      setError(null);
+      setLoading(true);
+      await logIn(input);
+      // setLoading(false);
+      navigate(routes.dashboard());
     } catch (e) {
+      setLoading(false);
+      // setError(e);
       console.log('Login error', e);
     }
   };

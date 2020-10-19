@@ -1,5 +1,11 @@
-import { Label, Box, Button } from 'theme-ui';
-import { Form, FormError, FieldError, TextField } from '@redwoodjs/forms';
+import { Box, Button } from 'theme-ui';
+import {
+  Form,
+  FormError,
+  FieldError,
+  TextField,
+  Label,
+} from '@redwoodjs/forms';
 
 const LoginForm = ({ onSave, error, loading, ...props }) => {
   const onSubmit = (data) => {
@@ -28,6 +34,7 @@ const LoginForm = ({ onSave, error, loading, ...props }) => {
           name="email"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
+          sx={{ mt: 0, mb: 0 }}
         >
           Email
         </Label>
@@ -50,7 +57,7 @@ const LoginForm = ({ onSave, error, loading, ...props }) => {
           name="password"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
-          sx={{ mt: 1, mb: 0 }}
+          sx={{ mt: 2, mb: 0 }}
         >
           Password
         </Label>

@@ -40,9 +40,9 @@ const HomePage = () => {
       headerAction={() => (
         <Button
           sx={{
-            bg: 'transparent',
+            bg: 'secondary',
             cursor: 'pointer',
-            color: 'secondary',
+            color: 'background',
             textDecoration: 'none',
             p: 2,
             border: '1px solid rgba(0,0,0,0.5)',
@@ -54,6 +54,7 @@ const HomePage = () => {
             },
           }}
           onClick={actionHanlder}
+          variant="secondary"
         >
           {actionLabel}
         </Button>

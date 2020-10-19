@@ -15,7 +15,18 @@ const Header = ({ action, ...props }) => {
       }}
       as="nav"
     >
-      <Text sx={{ p: 2, fontWeight: 'bold', fontSize: 24 }}>Test</Text>
+      <Link
+        href="/"
+        sx={{
+          p: 2,
+          fontWeight: 'bold',
+          fontSize: 24,
+          textDecoration: 'none',
+          color: 'primary',
+        }}
+      >
+        Test
+      </Link>
       <Box mx="auto" />
       {action()}
     </Flex>

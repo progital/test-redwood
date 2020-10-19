@@ -2271,6 +2271,11 @@
     lodash.omitby "^4.6.0"
     merge-graphql-schemas "^1.7.6"
 
+"@redwoodjs/auth@^0.19.3":
+  version "0.19.3"
+  resolved "https://registry.yarnpkg.com/@redwoodjs/auth/-/auth-0.19.3.tgz#8a4f136d46e92ec58d85751c403a49647f653901"
+  integrity sha512-3yD2gyDZ9MuoAAWKI8BbvSy19LVZErystmW72jV+xk4bzwIuD6z1VtYdET5sTMK8t0RFaplHH1b1OD/He/BfuA==
+
 "@redwoodjs/cli@^0.19.3":
   version "0.19.3"
   resolved "https://registry.yarnpkg.com/@redwoodjs/cli/-/cli-0.19.3.tgz#ffabfb73c73a9fe971a566cad041ea7acef08348"

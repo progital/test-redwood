@@ -7,7 +7,7 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Router, Route } from '@redwoodjs/router'
+import { Router, Route, Private } from '@redwoodjs/router';
 
 const Routes = () => {
   return (
@@ -28,11 +28,13 @@ const Routes = () => {
       <Route path="/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
       <Route path="/users/{id:Int}" page={UserPage} name="user" />
       <Route path="/users" page={UsersPage} name="users" />
-      <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+      <Private unauthenticated="home">
+        <Route path="/dashboard" page={DashboardPage} name="dashboard" />
+      </Private>
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
-  )
-}
+  );
+};
 
-export default Routes
+export default Routes;

@@ -15,10 +15,12 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.12.1",
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
+    "@redwoodjs/auth": "^0.19.3",
     "@redwoodjs/forms": "^0.19.3",
     "@redwoodjs/router": "^0.19.3",
     "@redwoodjs/web": "^0.19.3",
     "@theme-ui/presets": "^0.3.0",
+    "jsonwebtoken": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
