@@ -101,11 +101,12 @@ import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api';
  */
 
 export const getCurrentUser = async (token) => {
-  console.log('getCurrentUser', context);
+  console.log('getCurrentUser: context', context);
   console.log('token', token);
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+  console.log('getCurrentUser', decoded);
   // parseJWT({ decoded }).roles
 
   return { ...decoded, roles: [] };

@@ -17,7 +17,7 @@ const LoginUser = () => {
       navigate(routes.dashboard());
     } catch (e) {
       setLoading(false);
-      // setError(e);
+      setError(e);
       console.log('Login error', e);
     }
   };

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import ApolloError from 'errors/ApolloError';
 
 // const lsKey = 'testFstappTkn';
 
@@ -71,9 +72,8 @@ const CustomClient = (() => {
 
       if (errors) {
         console.log('errors', errors);
-        throw new Error(
-          `Could not login: ${response.statusText} (${response.status})`
-        );
+        const err = new ApolloError({ graphQLErrors: errors });
+        throw err;
       }
 
       token = data?.loginUser?.token || null;
