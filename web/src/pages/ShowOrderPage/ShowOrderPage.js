@@ -1,11 +1,11 @@
 import { Flex } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
-import EditOrderCell from 'components/dashboard/EditOrderCell';
+import OrderCell from 'components/dashboard/OrderCell';
 import { useAuth } from '@redwoodjs/auth';
 
-const EditOrderPage = ({ id }) => {
-  const { logOut } = useAuth();
+const ShowOrderPage = ({ id }) => {
+  const { logOut, currentUser } = useAuth();
 
   const headerHandler = () => {
     logOut();
@@ -20,10 +20,10 @@ const EditOrderPage = ({ id }) => {
         sx={{ flexDirection: 'column', flex: '1 0 auto', pt: 2 }}
         className="rw-scaffold"
       >
-        <EditOrderCell id={id} />
+        <OrderCell id={id} />
       </Flex>
     </DefaultLayout>
   );
 };
 
-export default EditOrderPage;
+export default ShowOrderPage;

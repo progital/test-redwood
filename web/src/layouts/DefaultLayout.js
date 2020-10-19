@@ -6,24 +6,7 @@ import { swiss } from '@theme-ui/presets';
 const theme = merge(swiss, {
   buttons: {
     primary: {
-      color: 'background',
-      bg: 'primary',
-      '&:hover': {
-        bg: 'text',
-      },
-    },
-    secondary: {
-      color: 'background',
-      bg: 'secondary',
-    },
-  },
-  variants: {
-    primary: {
-      color: 'background',
-      bg: 'primary',
-      '&:hover': {
-        bg: 'text',
-      },
+      mt: 3,
     },
   },
 });
@@ -31,7 +14,7 @@ const theme = merge(swiss, {
 const DefaultLayout = ({ children, headerAction, ...props }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Flex sx={{ height: '100vh', flexDirection: 'column' }}>
+      <Flex sx={{ height: '100vh', flexDirection: 'column' }} {...props}>
         <Header action={headerAction} />
         {children}
       </Flex>

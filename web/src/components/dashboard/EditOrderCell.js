@@ -1,7 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
 import { navigate, routes } from '@redwoodjs/router';
-import OrderForm from 'src/components/OrderForm';
 import { useAuth } from '@redwoodjs/auth';
+import OrderForm from 'components/dashboard/OrderForm';
 
 export const QUERY = gql`
   query FIND_ORDER_BY_ID($id: Int!) {
@@ -28,7 +28,7 @@ export const Success = ({ order }) => {
   const { addMessage } = useFlash();
   const [updateOrder, { loading, error }] = useMutation(UPDATE_ORDER_MUTATION, {
     onCompleted: () => {
-      navigate(routes.orders());
+      navigate(routes.dashboard());
       addMessage('Order updated.', { classes: 'rw-flash-success' });
     },
   });
@@ -42,10 +42,13 @@ export const Success = ({ order }) => {
   };
 
   return (
-    <div className="rw-segment">
+    <div
+      className="rw-segment"
+      sx={{ width: 900, maxWidth: '94%', margin: '20px auto 0' }}
+    >
       <header className="rw-segment-header">
         <h2 className="rw-heading rw-heading-secondary">
-          Edit Order {order.id}
+          Edit Order #{order.id}
         </h2>
       </header>
       <div className="rw-segment-main">

@@ -1,9 +1,9 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
 import { Link, routes, navigate } from '@redwoodjs/router';
 
-const DELETE_USER_MUTATION = gql`
-  mutation DeleteUserMutation($id: Int!) {
-    deleteUser(id: $id) {
+const DELETE_ORDER_MUTATION = gql`
+  mutation DeleteOrderMutation($id: Int!) {
+    deleteOrder(id: $id) {
       id
     }
   }
@@ -29,71 +29,70 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />;
 };
 
-const User = ({ user }) => {
+const OrderView = ({ order }) => {
   const { addMessage } = useFlash();
-  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
+  const [deleteOrder] = useMutation(DELETE_ORDER_MUTATION, {
     onCompleted: () => {
-      navigate(routes.users());
-      addMessage('User deleted.', { classes: 'rw-flash-success' });
+      navigate(routes.dashboard());
+      addMessage('Order deleted.', { classes: 'rw-flash-success' });
     },
   });
 
   const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete user ' + id + '?')) {
-      deleteUser({ variables: { id } });
+    if (confirm('Are you sure you want to delete order ' + id + '?')) {
+      deleteOrder({ variables: { id } });
     }
   };
 
   return (
     <>
-      <div className="rw-segment">
+      <div
+        className="rw-segment"
+        sx={{ width: 900, maxWidth: '94%', margin: '20px auto 0' }}
+      >
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            User {user.id} Detail
-          </h2>
+          <h2 className="rw-heading rw-heading-secondary">Order #{order.id}</h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
-              <td>{user.id}</td>
+              <td>{order.id}</td>
             </tr>
             <tr>
-              <th>Email</th>
-              <td>{user.email}</td>
+              <th>User id</th>
+              <td>{order.userId}</td>
             </tr>
             <tr>
-              <th>Display name</th>
-              <td>{user.displayName}</td>
-            </tr>
-            <tr>
-              <th>User name</th>
-              <td>{user.userName}</td>
+              <th>Total</th>
+              <td>{order.total}</td>
             </tr>
             <tr>
               <th>Created at</th>
-              <td>{timeTag(user.createdAt)}</td>
+              <td>{timeTag(order.createdAt)}</td>
             </tr>
           </tbody>
         </table>
       </div>
       <nav className="rw-button-group">
+        <Link to={routes.dashboard()} className="rw-button">
+          Back
+        </Link>
         <Link
-          to={routes.editUser({ id: user.id })}
+          to={routes.editOrder({ id: order.id })}
           className="rw-button rw-button-blue"
         >
           Edit
         </Link>
-        <a
-          href="#"
+        <span
           className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(user.id)}
+          onClick={() => onDeleteClick(order.id)}
         >
           Delete
-        </a>
+        </span>
       </nav>
     </>
   );
 };
 
-export default User;
+export default OrderView;

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Flex, Text, Box, Link } from 'theme-ui';
+import { Flex, Box } from 'theme-ui';
+import { routes, Link } from '@redwoodjs/router';
 
-const Header = ({ action, ...props }) => {
+const Header = ({ action = () => null, ...props }) => {
   return (
     <Flex
       sx={{
@@ -12,11 +13,13 @@ const Header = ({ action, ...props }) => {
         pr: 4,
         py: 1,
         boxShadow: '0px 4px 5px 2px rgba(0,0,0,0.2)',
+        zIndex: 10,
       }}
       as="nav"
+      {...props}
     >
       <Link
-        href="/"
+        to={routes.home()}
         sx={{
           p: 2,
           fontWeight: 'bold',

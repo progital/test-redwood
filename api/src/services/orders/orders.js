@@ -1,6 +1,10 @@
 import { db } from 'src/lib/db';
+import { foreignKeyReplacement } from 'src/lib/utils';
 
-export const orders = () => {
+export const orders = ({ userId = null }) => {
+  if (userId) {
+    return db.order.findMany({ where: { userId } });
+  }
   return db.order.findMany();
 };
 
@@ -11,14 +15,16 @@ export const order = ({ id }) => {
 };
 
 export const createOrder = ({ input }) => {
+  const data = foreignKeyReplacement(input);
   return db.order.create({
-    data: input,
+    data,
   });
 };
 
 export const updateOrder = ({ id, input }) => {
+  const data = foreignKeyReplacement(input);
   return db.order.update({
-    data: input,
+    data,
     where: { id },
   });
 };

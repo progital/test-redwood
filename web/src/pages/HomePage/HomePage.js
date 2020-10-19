@@ -1,14 +1,19 @@
-import { Flex, Button } from 'theme-ui';
+import { Flex } from 'theme-ui';
+import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
 import NewUser from 'components/account/NewUser';
 import LoginUser from 'components/account/LoginUser';
 import { useState } from 'react';
+import { Redirect, routes } from '@redwoodjs/router';
+import { useAuth } from '@redwoodjs/auth';
 
 const HomePage = () => {
   // login, newuser
   const [status, setStatus] = useState('login');
+  const { isAuthenticated } = useAuth();
   let actionLabel = null;
   let ActionForm = null;
+
   switch (status) {
     case 'login': {
       actionLabel = 'Create Account';
@@ -35,29 +40,14 @@ const HomePage = () => {
     }
   };
 
+  if (isAuthenticated) {
+    return <Redirect to={routes.dashboard()} />;
+  }
+
   return (
     <DefaultLayout
       headerAction={() => (
-        <Button
-          sx={{
-            bg: 'secondary',
-            cursor: 'pointer',
-            color: 'background',
-            textDecoration: 'none',
-            p: 2,
-            border: '1px solid rgba(0,0,0,0.5)',
-            borderRadius: '4px',
-            '&:hover': {
-              bg: 'text',
-              color: 'background',
-              borderColor: 'text',
-            },
-          }}
-          onClick={actionHanlder}
-          variant="secondary"
-        >
-          {actionLabel}
-        </Button>
+        <Button onClick={actionHanlder}>{actionLabel}</Button>
       )}
     >
       <Flex

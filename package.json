@@ -10,7 +10,10 @@
     "@redwoodjs/core": "^0.19.3"
   },
   "eslintConfig": {
-    "extends": "@redwoodjs/eslint-config"
+    "extends": "@redwoodjs/eslint-config",
+    "rules": {
+      "no-unused-vars": "warn"
+    }
   },
   "engines": {
     "node": ">=12",

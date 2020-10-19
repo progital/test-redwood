@@ -1,11 +1,11 @@
-import { render } from '@redwoodjs/testing'
+import { render } from '@redwoodjs/testing';
 
-import DashboardPage from './DashboardPage'
+import DashboardPage from './DashboardPage';
 
 describe('DashboardPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<DashboardPage />)
-    }).not.toThrow()
-  })
-})
+      render(<DashboardPage />);
+    }).not.toThrow();
+  });
+});

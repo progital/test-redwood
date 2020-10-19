@@ -1,4 +1,4 @@
-import { Box, Button } from 'theme-ui';
+import { Box } from 'theme-ui';
 import {
   Form,
   FormError,
@@ -6,6 +6,7 @@ import {
   TextField,
   Label,
 } from '@redwoodjs/forms';
+import Button from 'components/ui/Button';
 
 const LoginForm = ({ onSave, error, loading, ...props }) => {
   const onSubmit = (data) => {
@@ -70,18 +71,7 @@ const LoginForm = ({ onSave, error, loading, ...props }) => {
         />
         <FieldError name="password" className="rw-field-error" />
 
-        <Button
-          sx={{
-            mt: 3,
-            color: 'background',
-            bg: 'primary',
-            '&:hover': {
-              bg: 'text',
-            },
-            cursor: 'pointer',
-          }}
-          disabled={loading}
-        >
+        <Button sx={{ mt: 3 }} disabled={loading}>
           Login
         </Button>
       </Box>

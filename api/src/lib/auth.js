@@ -57,7 +57,7 @@ const jwt = require('jsonwebtoken');
 // The function `getCurrentUser` should return the user information
 // together with a collection of roles to check for role assignment:
 
-import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api';
+import { AuthenticationError, ForbiddenError } from '@redwoodjs/api';
 
 /**
  * Use requireAuth in your services to check that a user is logged in,
@@ -101,13 +101,7 @@ import { AuthenticationError, ForbiddenError, parseJWT } from '@redwoodjs/api';
  */
 
 export const getCurrentUser = async (token) => {
-  console.log('getCurrentUser: context', context);
-  console.log('token', token);
-
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-  console.log('getCurrentUser', decoded);
-  // parseJWT({ decoded }).roles
 
   return { ...decoded, roles: [] };
 };
@@ -134,8 +128,6 @@ export const getCurrentUser = async (token) => {
  */
 
 export const requireAuth = ({ role } = {}) => {
-  console.log('requireAuth', context);
-
   if (!context.currentUser) {
     throw new AuthenticationError("You don't have permission to do that.");
   }

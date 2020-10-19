@@ -6,8 +6,10 @@ import CustomClient from 'auth/CustomClient';
 
 import Routes from 'src/Routes';
 
-import './scaffold.css';
-import './index.css';
+import 'sanitize.css';
+import 'sanitize.css/forms.css';
+import 'sanitize.css/typography.css';
+import './style.scss';
 
 ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>

@@ -1,4 +1,4 @@
-import { useMutation, useFlash } from '@redwoodjs/web';
+import { useMutation } from '@redwoodjs/web';
 import { navigate, routes } from '@redwoodjs/router';
 import CreateAccountForm from 'components/account/CreateAccountForm';
 
@@ -11,11 +11,9 @@ const CREATE_USER_MUTATION = gql`
 `;
 
 const NewUser = () => {
-  const { addMessage } = useFlash();
   const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
     onCompleted: () => {
       navigate(routes.dashboard());
-      // addMessage('User created.', { classes: 'rw-flash-success' });
     },
   });
 
