@@ -10,6 +10,13 @@ export const QUERY = gql`
       userId
       total
       createdAt
+      OrderLineItem {
+        id
+        productId
+        productName
+        productPrice
+        quantity
+      }
     }
   }
 `;

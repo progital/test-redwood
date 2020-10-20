@@ -1,6 +1,9 @@
 import { db } from 'src/lib/db';
 
-export const orderLineItems = () => {
+export const orderLineItems = ({ orderId = null }) => {
+  if (orderId) {
+    return db.orderLineItem.findMany({ where: { orderId } });
+  }
   return db.orderLineItem.findMany();
 };
 

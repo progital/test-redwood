@@ -4,7 +4,7 @@ export const schema = gql`
     name: String!
     description: String
     price: Int!
-    deleted: Boolean!
+    deleted: Boolean
     deletedAt: DateTime
     createdAt: DateTime!
     OrderLineItem: [OrderLineItem]!
@@ -19,8 +19,6 @@ export const schema = gql`
     name: String!
     description: String
     price: Int!
-    deleted: Boolean!
-    deletedAt: DateTime
   }
 
   input UpdateProductInput {

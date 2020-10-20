@@ -20,9 +20,6 @@ const Routes = () => {
       <Route path="/admin/orders/{id:Int}" page={OrderPage} name="order" />
       <Route path="/admin/orders" page={OrdersPage} name="orders" />
       <Route path="/admin/products/new" page={NewProductPage} name="newProduct" />
-      <Route path="/admin/products/{id:Int}/edit" page={EditProductPage} name="editProduct" />
-      <Route path="/admin/products/{id:Int}" page={ProductPage} name="product" />
-      <Route path="/admin/products" page={ProductsPage} name="products" />
       <Route path="/admin/users/new" page={NewUserPage} name="newUser" />
       <Route path="/admin/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
       <Route path="/admin/users/{id:Int}" page={UserPage} name="user" />
@@ -31,6 +28,9 @@ const Routes = () => {
         <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         <Route path="/dashboard/order/{id:Int}" page={ShowOrderPage} name="showOrder" />
         <Route path="/dashboard/order/{id:Int}/edit" page={EditOrderPage} name="editOrder" />
+        <Route path="/dashboard/products" page={ProductsPage} name="products" />
+        <Route path="/dashboard/products/{id:Int}" page={ShowProductPage} name="showProduct" />
+        <Route path="/dashboard/products/{id:Int}/edit" page={EditProductPage} name="editProduct" />
       </Private>
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />

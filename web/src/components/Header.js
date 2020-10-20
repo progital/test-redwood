@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Box } from 'theme-ui';
+import { Flex } from 'theme-ui';
 import { routes, Link } from '@redwoodjs/router';
 
 const Header = ({ action = () => null, ...props }) => {
@@ -26,11 +26,13 @@ const Header = ({ action = () => null, ...props }) => {
           fontSize: 24,
           textDecoration: 'none',
           color: 'primary',
+          lineHeight: 1,
+          mr: 3,
         }}
       >
         Test
       </Link>
-      <Box mx="auto" />
+
       {action()}
     </Flex>
   );

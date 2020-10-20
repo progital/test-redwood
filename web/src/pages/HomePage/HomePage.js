@@ -1,4 +1,4 @@
-import { Flex } from 'theme-ui';
+import { Flex, Box } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
 import NewUser from 'components/account/NewUser';
@@ -47,7 +47,10 @@ const HomePage = () => {
   return (
     <DefaultLayout
       headerAction={() => (
-        <Button onClick={actionHanlder}>{actionLabel}</Button>
+        <>
+          <Box mx="auto" />
+          <Button onClick={actionHanlder}>{actionLabel}</Button>
+        </>
       )}
     >
       <Flex

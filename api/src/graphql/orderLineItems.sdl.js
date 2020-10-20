@@ -12,7 +12,7 @@ export const schema = gql`
   }
 
   type Query {
-    orderLineItems: [OrderLineItem!]!
+    orderLineItems(orderId: Int): [OrderLineItem!]!
     orderLineItem(id: Int!): OrderLineItem
   }
 

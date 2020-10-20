@@ -288,7 +288,8 @@
 }
 
 .rw-table-wrapper-responsive {
-  overflow-x: scroll;
+  // overflow-x: scroll;
+  overflow-x: auto;
 
   .rw-table {
     min-width: 48rem;

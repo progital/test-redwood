@@ -1,10 +1,10 @@
 import { Flex, Box } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
-import OrderCell from 'components/dashboard/OrderCell';
+import ProductCell from 'components/dashboard-products/ProductCell';
 import { useAuth } from '@redwoodjs/auth';
 
-const ShowOrderPage = ({ id }) => {
+const ShowProductPage = ({ id }) => {
   const { logOut } = useAuth();
 
   const headerHandler = () => {
@@ -25,10 +25,10 @@ const ShowOrderPage = ({ id }) => {
         sx={{ flexDirection: 'column', flex: '1 0 auto', pt: 2 }}
         className="rw-scaffold"
       >
-        <OrderCell id={id} />
+        <ProductCell id={id} />
       </Flex>
     </DefaultLayout>
   );
 };
 
-export default ShowOrderPage;
+export default ShowProductPage;

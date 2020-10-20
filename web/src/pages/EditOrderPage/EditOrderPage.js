@@ -1,4 +1,4 @@
-import { Flex } from 'theme-ui';
+import { Flex, Box } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
 import EditOrderCell from 'components/dashboard/EditOrderCell';
@@ -13,7 +13,12 @@ const EditOrderPage = ({ id }) => {
 
   return (
     <DefaultLayout
-      headerAction={() => <Button onClick={headerHandler}>Log out</Button>}
+      headerAction={() => (
+        <>
+          <Box mx="auto" />
+          <Button onClick={headerHandler}>Log out</Button>
+        </>
+      )}
     >
       <Flex
         as="section"

@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { Flex } from 'theme-ui';
+import { Flex, Box } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
-import Orders from 'components/dashboard/Orders';
+import OrdersLayout from 'components/dashboard/OrdersLayout';
 import OrdersCell from 'components/dashboard/OrdersCell';
 import NewOrder from 'components/dashboard/NewOrder';
 import { useAuth } from '@redwoodjs/auth';
+import { Link, routes } from '@redwoodjs/router';
 
 const DashboardPage = () => {
-  // default, neworder, editorder, showorder
+  // default, neworder
   const [status, setStatus] = useState('default');
-  const [orderId, setOrderId] = useState(null);
   const { logOut, currentUser } = useAuth();
   let ActionComponent = null;
 
@@ -23,28 +23,35 @@ const DashboardPage = () => {
   };
 
   const actions = {
-    selectOrder: setOrderId,
     newOrder,
   };
 
   switch (status) {
     case 'default': {
       ActionComponent = () => (
-        <Orders actions={actions}>
+        <OrdersLayout actions={actions}>
           <OrdersCell actions={actions} userId={currentUser.id} />
-        </Orders>
+        </OrdersLayout>
       );
       break;
     }
     case 'neworder': {
-      ActionComponent = () => <NewOrder actions={actions} />;
+      ActionComponent = () => <NewOrder />;
       break;
     }
   }
 
   return (
     <DefaultLayout
-      headerAction={() => <Button onClick={headerHandler}>Log out</Button>}
+      headerAction={() => (
+        <>
+          <Link to={routes.products()} className="rw-button">
+            Products
+          </Link>
+          <Box mx="auto" />
+          <Button onClick={headerHandler}>Log out</Button>
+        </>
+      )}
     >
       <Flex
         as="section"

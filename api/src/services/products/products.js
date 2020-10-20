@@ -1,7 +1,8 @@
 import { db } from 'src/lib/db';
+const orderBy = [{ id: 'asc' }];
 
 export const products = () => {
-  return db.product.findMany();
+  return db.product.findMany({ orderBy });
 };
 
 export const product = ({ id }) => {

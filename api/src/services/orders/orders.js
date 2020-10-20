@@ -1,9 +1,10 @@
 import { db } from 'src/lib/db';
 import { foreignKeyReplacement } from 'src/lib/utils';
+const orderBy = [{ id: 'asc' }];
 
 export const orders = ({ userId = null }) => {
   if (userId) {
-    return db.order.findMany({ where: { userId } });
+    return db.order.findMany({ where: { userId }, orderBy });
   }
   return db.order.findMany();
 };
