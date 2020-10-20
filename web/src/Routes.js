@@ -12,14 +12,6 @@ import { Router, Route, Private } from '@redwoodjs/router';
 const Routes = () => {
   return (
     <Router>
-      <Route path="/admin/order-line-items/new" page={NewOrderLineItemPage} name="newOrderLineItem" />
-      <Route path="/admin/order-line-items/{id:Int}/edit" page={EditOrderLineItemPage} name="editOrderLineItem" />
-      <Route path="/admin/order-line-items/{id:Int}" page={OrderLineItemPage} name="orderLineItem" />
-      <Route path="/admin/order-line-items" page={OrderLineItemsPage} name="orderLineItems" />
-      <Route path="/admin/orders/new" page={NewOrderPage} name="newOrder" />
-      <Route path="/admin/orders/{id:Int}" page={OrderPage} name="order" />
-      <Route path="/admin/orders" page={OrdersPage} name="orders" />
-      <Route path="/admin/products/new" page={NewProductPage} name="newProduct" />
       <Route path="/admin/users/new" page={NewUserPage} name="newUser" />
       <Route path="/admin/users/{id:Int}/edit" page={EditUserPage} name="editUser" />
       <Route path="/admin/users/{id:Int}" page={UserPage} name="user" />

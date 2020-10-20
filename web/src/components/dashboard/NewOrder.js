@@ -1,7 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
-import OrderForm from 'components/dashboard/OrderForm';
+import OrderForm from 'components/dashboard/NewOrderForm';
 
 const CREATE_ORDER_MUTATION = gql`
   mutation CreateOrderMutation($input: CreateOrderInput!) {
@@ -38,6 +38,7 @@ const NewOrder = () => {
         <h2 className="rw-heading rw-heading-secondary">New Order</h2>
       </header>
       <div className="rw-segment-main">
+        <p>New empty order will be created</p>
         <OrderForm onSave={onSave} loading={loading} error={error} />
       </div>
     </div>
