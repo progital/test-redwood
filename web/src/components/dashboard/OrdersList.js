@@ -1,5 +1,6 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
 import { Link, routes } from '@redwoodjs/router';
+import { priceFromCents } from 'utils/helpers';
 
 const DELETE_ORDER_MUTATION = gql`
   mutation DeleteOrderMutation($id: Int!) {
@@ -66,7 +67,7 @@ const OrdersList = ({ orders }) => {
             <tr key={order.id}>
               <td>{truncate(order.id)}</td>
               <td>{truncate(order.userId)}</td>
-              <td>{truncate(order.total)}</td>
+              <td>{priceFromCents(order.total)}</td>
               <td>{timeTag(order.createdAt)}</td>
               <td>
                 <nav className="rw-table-actions">

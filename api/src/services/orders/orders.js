@@ -1,6 +1,19 @@
 import { db } from 'src/lib/db';
 import { foreignKeyReplacement } from 'src/lib/utils';
+import round from 'lodash/round';
 const orderBy = [{ id: 'asc' }];
+
+export const calcOrderTotal = async ({ orderId }) => {
+  const items = await db.orderLineItem.findMany({ where: { orderId } });
+  const total = items.reduce(
+    (acc, item) => acc + item.productPrice * item.quantity,
+    0
+  );
+  return db.order.update({
+    data: { total: round(total) },
+    where: { id: orderId },
+  });
+};
 
 export const orders = ({ userId = null }) => {
   if (userId) {

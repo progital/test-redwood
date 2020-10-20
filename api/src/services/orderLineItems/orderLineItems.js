@@ -1,5 +1,6 @@
 import { db } from 'src/lib/db';
 import { foreignKeyReplacement } from 'src/lib/utils';
+import { calcOrderTotal } from 'src/services/orders';
 const orderBy = [{ id: 'asc' }];
 
 export const orderLineItems = ({ orderId = null }) => {
@@ -15,25 +16,34 @@ export const orderLineItem = ({ id }) => {
   });
 };
 
-export const createOrderLineItem = ({ input }) => {
+export const createOrderLineItem = async ({ input }) => {
+  const { orderId } = input;
   const data = foreignKeyReplacement(input);
-  return db.orderLineItem.create({
+  const lineItem = await db.orderLineItem.create({
     data,
   });
+  await calcOrderTotal({ orderId });
+  return lineItem;
 };
 
-export const updateOrderLineItem = ({ id, input }) => {
+export const updateOrderLineItem = async ({ id, input }) => {
+  const { orderId } = input;
   const data = foreignKeyReplacement(input);
-  return db.orderLineItem.update({
+  const lineItem = await db.orderLineItem.update({
     data,
     where: { id },
   });
+  await calcOrderTotal({ orderId });
+  return lineItem;
 };
 
-export const deleteOrderLineItem = ({ id }) => {
-  return db.orderLineItem.delete({
+export const deleteOrderLineItem = async ({ id }) => {
+  const item = await orderLineItem({ id });
+  const lineItem = await db.orderLineItem.delete({
     where: { id },
   });
+  await calcOrderTotal(item);
+  return lineItem;
 };
 
 export const OrderLineItem = {
