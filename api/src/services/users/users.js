@@ -1,7 +1,9 @@
 import { db } from 'src/lib/db';
+import { requireAuth } from 'src/lib/auth';
 const bcrypt = require('bcrypt');
 const snakeCase = require('lodash/snakeCase');
 const jwt = require('jsonwebtoken');
+
 const saltRounds = 10;
 const tokenExpiry = '2d';
 const selectUser = {
@@ -20,10 +22,14 @@ const emailExists = ({ email }) => {
 };
 
 export const users = () => {
+  requireAuth();
+
   return db.user.findMany({ select: selectUser });
 };
 
 export const user = ({ id }) => {
+  requireAuth();
+
   return db.user.findOne({
     where: { id },
     select: selectUser,
@@ -48,6 +54,8 @@ export const createUser = async ({ input }) => {
 };
 
 export const updateUser = async ({ id, input }) => {
+  requireAuth();
+
   const hashed = await bcrypt.hash(input.password, saltRounds);
 
   return db.user.update({
@@ -58,6 +66,8 @@ export const updateUser = async ({ id, input }) => {
 };
 
 export const deleteUser = ({ id }) => {
+  requireAuth();
+
   return db.user.delete({
     where: { id },
     select: selectUser,
@@ -89,7 +99,9 @@ export const loginUser = async ({ input: { email, password } }) => {
 };
 
 export const logoutUser = () => {
-  // not implemented yet
+  requireAuth();
+
+  // implemented on the frontend
   return true;
 };
 

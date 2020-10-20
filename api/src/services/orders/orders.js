@@ -1,6 +1,8 @@
 import { db } from 'src/lib/db';
 import { foreignKeyReplacement } from 'src/lib/utils';
+import { requireAuth } from 'src/lib/auth';
 import round from 'lodash/round';
+
 const orderBy = [{ id: 'asc' }];
 
 export const calcOrderTotal = async ({ orderId }) => {
@@ -16,6 +18,8 @@ export const calcOrderTotal = async ({ orderId }) => {
 };
 
 export const orders = ({ userId = null }) => {
+  requireAuth();
+
   if (userId) {
     return db.order.findMany({ where: { userId }, orderBy });
   }
@@ -23,12 +27,16 @@ export const orders = ({ userId = null }) => {
 };
 
 export const order = ({ id }) => {
+  requireAuth();
+
   return db.order.findOne({
     where: { id },
   });
 };
 
 export const createOrder = ({ input }) => {
+  requireAuth();
+
   const data = foreignKeyReplacement(input);
   return db.order.create({
     data,
@@ -36,6 +44,8 @@ export const createOrder = ({ input }) => {
 };
 
 export const updateOrder = ({ id, input }) => {
+  requireAuth();
+
   const data = foreignKeyReplacement(input);
   return db.order.update({
     data,
@@ -44,6 +54,8 @@ export const updateOrder = ({ id, input }) => {
 };
 
 export const deleteOrder = ({ id }) => {
+  requireAuth();
+
   return db.order.delete({
     where: { id },
   });

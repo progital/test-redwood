@@ -1,9 +1,13 @@
 import { db } from 'src/lib/db';
 import { foreignKeyReplacement } from 'src/lib/utils';
 import { calcOrderTotal } from 'src/services/orders';
+import { requireAuth } from 'src/lib/auth';
+
 const orderBy = [{ id: 'asc' }];
 
 export const orderLineItems = ({ orderId = null }) => {
+  requireAuth();
+
   if (orderId) {
     return db.orderLineItem.findMany({ where: { orderId }, orderBy });
   }
@@ -11,12 +15,16 @@ export const orderLineItems = ({ orderId = null }) => {
 };
 
 export const orderLineItem = ({ id }) => {
+  requireAuth();
+
   return db.orderLineItem.findOne({
     where: { id },
   });
 };
 
 export const createOrderLineItem = async ({ input }) => {
+  requireAuth();
+
   const { orderId } = input;
   const data = foreignKeyReplacement(input);
   const lineItem = await db.orderLineItem.create({
@@ -27,6 +35,8 @@ export const createOrderLineItem = async ({ input }) => {
 };
 
 export const updateOrderLineItem = async ({ id, input }) => {
+  requireAuth();
+
   const { orderId } = input;
   const data = foreignKeyReplacement(input);
   const lineItem = await db.orderLineItem.update({
@@ -38,6 +48,8 @@ export const updateOrderLineItem = async ({ id, input }) => {
 };
 
 export const deleteOrderLineItem = async ({ id }) => {
+  requireAuth();
+
   const item = await orderLineItem({ id });
   const lineItem = await db.orderLineItem.delete({
     where: { id },
