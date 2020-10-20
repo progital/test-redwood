@@ -11,10 +11,12 @@ import { Link, routes } from '@redwoodjs/router';
 import LineItemsLayout from 'components/dashboard-line-items/ItemsLayout';
 import ItemsCell from 'components/dashboard-line-items/ItemsCell';
 import NewItem from 'components/dashboard-line-items/NewItem';
+import EditItem from 'components/dashboard-line-items/EditItem';
 
 const OrderForm = (props) => {
-  // default, newitem
+  // default, newitem, viewitem, edititem
   const [status, setStatus] = useState('default');
+  const [selectedItemId, setSelectedId] = useState(0);
   const onSubmit = (data) => {
     props.onSave(data, props?.order?.id);
   };
@@ -23,6 +25,10 @@ const OrderForm = (props) => {
   const actions = {
     newItem: () => {
       setStatus('newitem');
+    },
+    editItem: (id) => {
+      setStatus('edititem');
+      setSelectedId(id);
     },
     back: () => {
       setStatus('default');
@@ -39,35 +45,29 @@ const OrderForm = (props) => {
       break;
     }
     case 'newitem': {
-      ActionComponent = () => <NewItem actions={actions} />;
+      ActionComponent = () => (
+        <NewItem actions={actions} orderId={props?.order?.id} />
+      );
+      break;
+    }
+    case 'edititem': {
+      ActionComponent = () => (
+        <EditItem actions={actions} id={selectedItemId} />
+      );
       break;
     }
   }
 
   return (
     <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
-        <ActionComponent />
-        {status !== 'newitem' ? (
-          <div className="rw-button-group">
-            <Link to={routes.dashboard()} className="rw-button">
-              Back
-            </Link>
-            <Submit
-              disabled={props.loading}
-              className="rw-button rw-button-blue"
-            >
-              Save
-            </Submit>
-          </div>
-        ) : null}
-      </Form>
+      <ActionComponent />
+      {status === 'default' ? (
+        <div className="rw-button-group">
+          <Link to={routes.dashboard()} className="rw-button">
+            Back
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };

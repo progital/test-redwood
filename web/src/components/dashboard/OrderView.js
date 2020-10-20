@@ -1,5 +1,6 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
 import { Link, routes, navigate } from '@redwoodjs/router';
+import ItemsEmbedCell from 'components/dashboard-line-items/ItemsEmbedCell';
 
 const DELETE_ORDER_MUTATION = gql`
   mutation DeleteOrderMutation($id: Int!) {
@@ -73,7 +74,15 @@ const OrderView = ({ order }) => {
             </tr>
           </tbody>
         </table>
+
+        <header className="rw-header">
+          <h1 className="rw-heading rw-heading-primary">
+            <span sx={{ color: 'secondary' }}>Line Items</span>
+          </h1>
+        </header>
+        <ItemsEmbedCell orderId={order.id} />
       </div>
+
       <nav className="rw-button-group">
         <Link to={routes.dashboard()} className="rw-button">
           Back

@@ -6,7 +6,7 @@ export const orders = ({ userId = null }) => {
   if (userId) {
     return db.order.findMany({ where: { userId }, orderBy });
   }
-  return db.order.findMany();
+  return db.order.findMany({ orderBy });
 };
 
 export const order = ({ id }) => {

@@ -1,6 +1,6 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
-import { navigate, routes } from '@redwoodjs/router';
-import OrderLineItemForm from 'components/dashboard-line-items/ItemForm';
+import { priceToCents } from 'utils/helpers';
+import OrderLineItemForm from 'components/dashboard-line-items/ItemCreateForm';
 
 const CREATE_ORDER_LINE_ITEM_MUTATION = gql`
   mutation CreateOrderLineItemMutation($input: CreateOrderLineItemInput!) {
@@ -16,15 +16,20 @@ const NewOrderLineItem = ({ orderId, actions }) => {
     CREATE_ORDER_LINE_ITEM_MUTATION,
     {
       onCompleted: () => {
+        actions.back();
         addMessage('Line Item created.', { classes: 'rw-flash-success' });
       },
     }
   );
 
   const onSave = (input) => {
+    if (!input.productId) {
+      return;
+    }
     const castInput = Object.assign(input, {
       orderId,
       productId: parseInt(input.productId),
+      productPrice: priceToCents(input.productPrice),
     });
     createOrderLineItem({ variables: { input: castInput } });
   };

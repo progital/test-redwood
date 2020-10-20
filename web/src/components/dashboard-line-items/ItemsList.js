@@ -1,5 +1,5 @@
 import { useMutation, useFlash } from '@redwoodjs/web';
-import { Link, routes } from '@redwoodjs/router';
+import { priceFromCents } from 'utils/helpers';
 
 const DELETE_ORDER_LINE_ITEM_MUTATION = gql`
   mutation DeleteOrderLineItemMutation($id: Int!) {
@@ -35,7 +35,7 @@ const checkboxInputTag = (checked) => {
   return <input type="checkbox" checked={checked} disabled />;
 };
 
-const OrderLineItemsList = ({ orderLineItems }) => {
+const OrderLineItemsList = ({ orderLineItems, actions, embedded }) => {
   const { addMessage } = useFlash();
   const [deleteOrderLineItem] = useMutation(DELETE_ORDER_LINE_ITEM_MUTATION, {
     onCompleted: () => {
@@ -61,39 +61,38 @@ const OrderLineItemsList = ({ orderLineItems }) => {
             <th>Product price</th>
             <th>Product name</th>
             <th>Quantity</th>
-            <th>&nbsp;</th>
+            {!embedded && <th>&nbsp;</th>}
           </tr>
         </thead>
         <tbody>
           {orderLineItems.map((orderLineItem) => (
             <tr key={orderLineItem.id}>
               <td>{truncate(orderLineItem.id)}</td>
-              <td>{truncate(orderLineItem.productPrice)}</td>
+              <td>{priceFromCents(orderLineItem.productPrice)}</td>
               <td>{truncate(orderLineItem.productName)}</td>
               <td>{truncate(orderLineItem.quantity)}</td>
-              <td>
-                <nav className="rw-table-actions">
-                  <span
-                    title={'Show orderLineItem ' + orderLineItem.id + ' detail'}
-                    className="rw-button rw-button-small"
-                  >
-                    Show
-                  </span>
-                  <span
-                    title={'Edit orderLineItem ' + orderLineItem.id}
-                    className="rw-button rw-button-small rw-button-blue"
-                  >
-                    Edit
-                  </span>
-                  <span
-                    title={'Delete orderLineItem ' + orderLineItem.id}
-                    className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(orderLineItem.id)}
-                  >
-                    Delete
-                  </span>
-                </nav>
-              </td>
+              {!embedded && (
+                <td>
+                  <nav className="rw-table-actions">
+                    <span
+                      onClick={() => {
+                        actions.editItem(orderLineItem.id);
+                      }}
+                      title={'Edit orderLineItem ' + orderLineItem.id}
+                      className="rw-button rw-button-small rw-button-blue"
+                    >
+                      Edit
+                    </span>
+                    <span
+                      title={'Delete orderLineItem ' + orderLineItem.id}
+                      className="rw-button rw-button-small rw-button-red"
+                      onClick={() => onDeleteClick(orderLineItem.id)}
+                    >
+                      Delete
+                    </span>
+                  </nav>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
