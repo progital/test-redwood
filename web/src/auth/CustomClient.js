@@ -26,8 +26,6 @@ function getCurrentUser() {
   }
 
   const user = jwt.decode(token);
-  console.log('My token', token);
-  console.log('Decoded', user);
   return user;
 }
 
@@ -76,7 +74,6 @@ const CustomClient = {
         `Could not login: ${response.statusText} (${response.status})`
       );
     }
-    console.log(response);
     const { data, errors } = await response.json();
 
     if (errors) {

@@ -3,7 +3,7 @@ import { Flex, Box } from 'theme-ui';
 import Button from 'components/ui/ButtonOutline';
 import DefaultLayout from 'layouts/DefaultLayout';
 import OrdersLayout from 'components/dashboard/OrdersLayout';
-import OrdersCell from 'components/dashboard/OrdersCell';
+
 import NewOrder from 'components/dashboard/NewOrder';
 import { useAuth } from '@redwoodjs/auth';
 import { Link, routes } from '@redwoodjs/router';
@@ -29,9 +29,7 @@ const DashboardPage = () => {
   switch (status) {
     case 'default': {
       ActionComponent = () => (
-        <OrdersLayout actions={actions}>
-          <OrdersCell actions={actions} userId={currentUser.id} />
-        </OrdersLayout>
+        <OrdersLayout actions={actions} userId={currentUser.id} />
       );
       break;
     }

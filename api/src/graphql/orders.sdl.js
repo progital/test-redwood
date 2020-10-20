@@ -9,7 +9,13 @@ export const schema = gql`
   }
 
   type Query {
-    orders(userId: Int): [Order!]!
+    orders(
+      userId: Int
+      startTotal: Int
+      endTotal: Int
+      startDate: DateTime
+      endDate: DateTime
+    ): [Order!]!
     order(id: Int!): Order
   }
 

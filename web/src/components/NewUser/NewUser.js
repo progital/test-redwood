@@ -20,7 +20,6 @@ const NewUser = () => {
   });
 
   const onSave = (input) => {
-    console.log(input);
     createUser({ variables: { input } });
   };
 

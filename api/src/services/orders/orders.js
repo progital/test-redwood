@@ -17,12 +17,41 @@ export const calcOrderTotal = async ({ orderId }) => {
   });
 };
 
-export const orders = ({ userId = null }) => {
+export const orders = ({
+  userId = null,
+  startTotal,
+  endTotal,
+  startDate,
+  endDate,
+}) => {
   requireAuth();
 
-  if (userId) {
-    return db.order.findMany({ where: { userId }, orderBy });
+  const filter = [];
+
+  if (startTotal) {
+    filter.push({ total: { gte: startTotal } });
   }
+
+  if (endTotal) {
+    filter.push({ total: { lte: endTotal } });
+  }
+
+  if (startDate) {
+    filter.push({ createdAt: { gte: startDate } });
+  }
+
+  if (endDate) {
+    filter.push({ createdAt: { lte: endDate } });
+  }
+
+  if (userId) {
+    filter.push({ userId });
+  }
+
+  if (filter.length) {
+    return db.order.findMany({ where: { AND: filter }, orderBy });
+  }
+
   return db.order.findMany({ orderBy });
 };
 

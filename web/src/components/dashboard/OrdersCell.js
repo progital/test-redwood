@@ -1,8 +1,20 @@
 import OrdersList from 'components/dashboard/OrdersList';
 
 export const QUERY = gql`
-  query ORDERS($userId: Int!) {
-    orders(userId: $userId) {
+  query ORDERS(
+    $userId: Int!
+    $startTotal: Int
+    $endTotal: Int
+    $startDate: DateTime
+    $endDate: DateTime
+  ) {
+    orders(
+      userId: $userId
+      startTotal: $startTotal
+      endTotal: $endTotal
+      startDate: $startDate
+      endDate: $endDate
+    ) {
       id
       userId
       total
