@@ -1,0 +1,46 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "private": true,
+  "browserslist": {
+    "development": [
+      "last 1 version"
+    ],
+    "production": [
+      "defaults",
+      "not IE 11",
+      "not IE_Mob 11"
+    ]
+  },
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.12.1",
+    "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
+    "@redwoodjs/auth": "^0.19.3",
+    "@redwoodjs/forms": "^0.19.3",
+    "@redwoodjs/router": "^0.19.3",
+    "@redwoodjs/web": "^0.19.3",
+    "@theme-ui/presets": "^0.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-modern-calendar-datepicker": "^3.1.6",
+    "sanitize.css": "^12.0.1",
+    "theme-ui": "^0.4.0-rc.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "eslint": "^7.11.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "postcss-loader": "^4.0.4",
+    "prettier": "2.1.2",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3"
+  }
+}
